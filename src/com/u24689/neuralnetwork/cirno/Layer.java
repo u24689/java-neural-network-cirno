@@ -7,11 +7,11 @@ public class Layer {
     public Matrix error;
     public int layerSize;
 
-    Layer (int newLayerSize) {
+    Layer (int newLayerSize, int previousLayerSize) {
         layerSize = newLayerSize;
         value = new Matrix(layerSize, 1);
         bias = new Matrix(layerSize, 1);
-        weight = new Matrix(layerSize, layerSize);
+        weight = new Matrix(layerSize, previousLayerSize);
         error = new Matrix(layerSize, 1);
         value.randomize(0, 1);
         bias.randomize(0, 1);
@@ -20,7 +20,11 @@ public class Layer {
 
     public void feedForward(Layer previousLayer) {
         value = Matrix.multiply(weight, previousLayer.value);
-        value.add(bias);
+        try {
+            value.add(bias);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void calculateError(Matrix answer) {

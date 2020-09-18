@@ -7,15 +7,16 @@ public class Network {
     Network(int newLayerCount, int[] layerSizes) {
         layerCount = newLayerCount;
         layers = new Layer[layerCount];
-        for (int i = 0; i < layerCount; i += 1) {
-            layers[i] = new Layer(layerSizes[i]);
+        layers[0] = new Layer(1, layerSizes[0]);
+        for (int i = 1; i < layerCount; i += 1) {
+            layers[i] = new Layer(layerSizes[i], layerSizes[i - 1]);
         }
     }
 
     public void guess(double[] inputs) {
         layers[0].setValue(inputs);
         for (int i = 1; i < layerCount; i += 1){
-            layers[i].feedForward(layers[i]);
+            layers[i].feedForward(layers[i - 1]);
         }
     }
 

@@ -25,6 +25,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -41,7 +48,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="com.u24689.neuralnetwork.cirno.Main" />
       <module name="java-neural-network-cirno" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -58,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600390309755</updated>
-      <workItem from="1600390312827" duration="46000" />
+      <workItem from="1600390312827" duration="1594000" />
     </task>
     <servers />
   </component>
@@ -77,9 +84,25 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600390357689">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600390414633">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600390357689" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600390414633" />
+    <state width="1877" height="572" key="GridCell.Tab.0.bottom" timestamp="1600391908297">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="572" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600391908297" />
+    <state width="1877" height="572" key="GridCell.Tab.0.center" timestamp="1600391908297">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="572" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600391908297" />
+    <state width="1877" height="572" key="GridCell.Tab.0.left" timestamp="1600391908297">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="572" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600391908297" />
+    <state width="1877" height="572" key="GridCell.Tab.0.right" timestamp="1600391908297">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="572" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600391908297" />
   </component>
 </project>

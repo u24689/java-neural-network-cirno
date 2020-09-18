@@ -1,5 +1,7 @@
 package com.u24689.neuralnetwork.cirno;
 
+import com.u24689.neuralnetwork.cirno.exceptions.MatrixException;
+
 /**
  * the class for matrix
  */
@@ -50,11 +52,10 @@ public class Matrix {
             }
         }
     }
-    public void add(Matrix n) {
+    public void add(Matrix n) throws MatrixException{
         if (!Matrix.isSameSize(this, n)) {
-            System.out.println(String.format("Can't add matrix with sizes [%d, %d] and [%d, %d]",
+            throw new MatrixException(String.format("Can't add matrix with sizes [%d, %d] and [%d, %d]",
                     row, column, n.row, n.column));
-            return;
         }
         for (int i = 0; i < row; i += 1) {
             for (int j = 0; j < column; j += 1) {
@@ -69,11 +70,10 @@ public class Matrix {
             }
         }
     }
-    public void subtract(Matrix n) {
+    public void subtract(Matrix n) throws MatrixException{
         if (!Matrix.isSameSize(this, n)) {
-            System.out.println(String.format("Can't subtract matrix with sizes [%d, %d] and [%d, %d]",
+            throw new MatrixException(String.format("Can't substract matrix with sizes [%d, %d] and [%d, %d]",
                     row, column, n.row, n.column));
-            return;
         }
         for (int i = 0; i < row; i += 1) {
             for (int j = 0; j < column; j += 1) {
@@ -88,11 +88,10 @@ public class Matrix {
             }
         }
     }
-    public void multiply(Matrix n) {
+    public void multiply(Matrix n) throws MatrixException{
         if (!canMultiply(this, n)) {
-            System.out.println(String.format("Can't multiply matrix with sizes [%d, %d] and [%d, %d]",
+            throw new MatrixException(String.format("Can't multiply matrix with sizes [%d, %d] and [%d, %d]",
                     row, column, n.row, n.column));
-            return;
         }
         double[][] result = new double[row][column];
         for (int i = 0; i < row; i += 1) {
@@ -149,7 +148,11 @@ public class Matrix {
     }
     public static Matrix add(Matrix a, Matrix b) {
         Matrix result = new Matrix(a);
-        result.add(b);
+        try {
+            result.add(b);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return result;
     }
     public static Matrix subtract(Matrix a, double b) {
@@ -157,7 +160,11 @@ public class Matrix {
         return a;
     }
     public static Matrix subtract(Matrix a, Matrix b) {
-        a.subtract(b);
+        try {
+            a.subtract(b);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return a;
     }
     public static Matrix multiply(Matrix a, double b) {
@@ -167,7 +174,11 @@ public class Matrix {
     }
     public static Matrix multiply(Matrix a, Matrix b) {
         Matrix result = new Matrix(a.row, b.column);
-        result.multiply(b);
+        try {
+            result.multiply(b);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return result;
     }
     public static Matrix transpose(Matrix a) {
