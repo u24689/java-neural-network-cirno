@@ -1,48 +1,88 @@
 package com.u24689.neuralnetwork.cirno;
 
+import com.u24689.neuralnetwork.cirno.exceptions.MatrixException;
+
+import javax.swing.plaf.synth.SynthEditorPaneUI;
+import java.util.Random;
+
 public class Network {
-    int layerCount;
+    int layer_count;
     Layer[] layers;
 
-    Network(int newLayerCount, int[] layerSizes) {
-        layerCount = newLayerCount;
-        layers = new Layer[layerCount];
-        layers[0] = new Layer(1, layerSizes[0]);
-        for (int i = 1; i < layerCount; i += 1) {
-            layers[i] = new Layer(layerSizes[i], layerSizes[i - 1]);
+    Network(int new_layer_count, int[] layer_sizes, ActivationFunction[] activation_functions) {
+        layer_count = new_layer_count;
+        layers = new Layer[layer_count];
+//        System.out.println("new layer 0");
+        layers[0] = new Layer(layer_sizes[0], 1, activation_functions[0]);
+        for (int i = 1; i < layer_count; i += 1) {
+//            System.out.println(String.format("new layer %d", i));
+            layers[i] = new Layer(layer_sizes[i], layer_sizes[i - 1], activation_functions[i]);
         }
     }
 
-    public void guess(double[] inputs) {
+    public Matrix guess(double[] inputs) throws MatrixException {
+        feed_forward(inputs);
+        return layers[layer_count - 1].value;
+    }
+
+    public void feed_forward(double[] inputs) throws MatrixException {
         layers[0].setValue(inputs);
-        for (int i = 1; i < layerCount; i += 1){
-            layers[i].feedForward(layers[i - 1]);
+        for (int i = 1; i < layer_count; i += 1){
+//            System.out.println(String.format("feeding forward: layer %d\n", i));
+            layers[i].feed_forward(layers[i - 1]);
         }
     }
 
-    public void calculateError(double[] inputs, double[] outputs) {
-        guess(inputs);
-        layers[layerCount - 1].calculateError(new Matrix(outputs));
-        for(int i = layerCount - 2; i >= 0; i -= 1) {
-            layers[i].calculateError(layers[i + 1]);
-        }
-        for(int i = 0; i < layerCount; i += 1) {
-            System.out.println(String.format("Layer %d:", i));
-            layers[i].print(false, false,false, true);
-        }
-    }
+//    public void calculate_error(double[] inputs, double[] outputs) throws MatrixException{
+//        feed_forward(inputs);
+//        layers[layer_count - 1].calculate_error(new Matrix(outputs));
+//        for(int i = layer_count - 2; i >= 0; i -= 1) {
+//            layers[i].calculate_error(layers[i + 1]);
+//        }
+//    }
 
-    public void calculateError() {
+    public void calculate_error() {
         // TODO: calculate error
     }
 
-    public void train(double[][] inputs, double[][] outputs, double learning_rate, int training_time) {
+    public void train(
+            double[][] inputs, double[][] outputs, double learning_rate, int training_time, String mode
+    ) throws MatrixException {
+        for (int i = 0; i < layer_count; i += 1) {
+            layers[i].learning_rate = learning_rate;
+        }
         for (int i = 1; i <= training_time; i += 1) {
-            // TODO: train
+            if (mode == "full") {
+                for (int j = 0; j < inputs.length; j += 1) {
+//                    calculate_error(inputs[j], outputs[j]);
+                    layers[layer_count - 1].backpropagation(layers[layer_count - 2], new Matrix(outputs[j]));
+                    for (int k = layer_count - 2; k > 0; k -= 1) {
+                        layers[k].backpropagation(layers[k - 1], null);
+                    }
+                }
+            } else if (mode == "random") {
+                int p_data = new Random().nextInt(inputs.length);
+//                calculate_error(inputs[p_data], outputs[p_data]);
+                layers[layer_count - 1].backpropagation(layers[layer_count - 2], new Matrix(outputs[p_data]));
+                for (int k = layer_count - 2; k > 0; k -= 1) {
+                    layers[k].backpropagation(layers[k - 1], null);
+                }
+            }
         }
     }
 
     public void print() {
-        layers[layerCount].print(true, true, true, true);
+        layers[layer_count - 1].print(true, true, true, true);
+    }
+
+    public void print_network() {
+        System.out.println(String.format("There are %d layers:", layer_count));
+        System.out.println("--------------------------------");
+        for (int i = 0; i < layer_count; i += 1) {
+            System.out.println(String.format("Layer %d:", i));
+            layers[i].print(false, true, true, false);
+            System.out.println("--------------------------------");
+        }
+        System.out.println();
     }
 }

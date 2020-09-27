@@ -9,9 +9,9 @@ public class Matrix {
     int row, column;
     double[][] data;
 
-    Matrix(int newRow, int newColumn) {
-        row = newRow;
-        column = newColumn;
+    Matrix(int new_row, int new_column) {
+        row = new_row;
+        column = new_column;
         data = new double[row][column];
     }
     Matrix(double[][] newData) {
@@ -72,7 +72,7 @@ public class Matrix {
     }
     public void subtract(Matrix n) throws MatrixException{
         if (!Matrix.isSameSize(this, n)) {
-            throw new MatrixException(String.format("Can't substract matrix with sizes [%d, %d] and [%d, %d]",
+            throw new MatrixException(String.format("Can't subtract matrices with sizes [%d, %d] and [%d, %d]",
                     row, column, n.row, n.column));
         }
         for (int i = 0; i < row; i += 1) {
@@ -88,22 +88,42 @@ public class Matrix {
             }
         }
     }
-    public void multiply(Matrix n) throws MatrixException{
+    public void multiply(Matrix n) throws MatrixException {
         if (!canMultiply(this, n)) {
-            throw new MatrixException(String.format("Can't multiply matrix with sizes [%d, %d] and [%d, %d]",
+            throw new MatrixException(String.format("Can't multiply matrices with sizes [%d, %d] and [%d, %d]",
                     row, column, n.row, n.column));
         }
-        double[][] result = new double[row][column];
+        double[][] result = new double[row][n.column];
         for (int i = 0; i < row; i += 1) {
             for (int j = 0; j < n.column; j += 1) {
                 double sum = 0;
                 for (int k = 0; k < column; k += 1) {
-                    sum += data[i][k] * data[k][j];
+//                    System.out.println(String.format("adding [%d][%d] and [%d][%d]\n", i, k, k, j));
+                    sum += data[i][k] * n.data[k][j];
                 }
                 result[i][j] = sum;
             }
         }
+        column = n.column;
         data = result;
+    }
+    public void multiply_element_wise(Matrix n) throws MatrixException {
+        if (!isSameSize(this, n)) {
+            throw new MatrixException(String.format("Can't element-wise multiply matrices with sizes [%d, %d] and [%d, %d]",
+                    row, column, n.row, n.column));
+        }
+        for (int i = 0; i < row; i += 1) {
+            for (int j = 0; j < column; j += 1) {
+                data[i][j] *= n.data[i][j];
+            }
+        }
+    }
+    public void map(ActivationFunction func) {
+        for (int i = 0; i < row; i += 1) {
+            for (int j = 0; j < column; j += 1) {
+                data[i][j] = func.calculate(data[i][j]);
+            }
+        }
     }
     public void transpose() {
         Matrix p = new Matrix(data);
@@ -119,8 +139,7 @@ public class Matrix {
     public void print() {
         for (int i = 0; i < row; i += 1) {
             for (int j = 0; j < column; j += 1) {
-                System.out.print(data[i][j]);
-                System.out.print('\t');
+                System.out.print(String.format("%.5f\t", data[i][j]));
             }
             System.out.println();
         }
@@ -146,25 +165,17 @@ public class Matrix {
         result.add(b);
         return result;
     }
-    public static Matrix add(Matrix a, Matrix b) {
+    public static Matrix add(Matrix a, Matrix b) throws MatrixException {
         Matrix result = new Matrix(a);
-        try {
-            result.add(b);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        result.add(b);
         return result;
     }
     public static Matrix subtract(Matrix a, double b) {
         a.subtract(b);
         return a;
     }
-    public static Matrix subtract(Matrix a, Matrix b) {
-        try {
-            a.subtract(b);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    public static Matrix subtract(Matrix a, Matrix b) throws MatrixException {
+        a.subtract(b);
         return a;
     }
     public static Matrix multiply(Matrix a, double b) {
@@ -172,17 +183,24 @@ public class Matrix {
         result.multiply(b);
         return result;
     }
-    public static Matrix multiply(Matrix a, Matrix b) {
-        Matrix result = new Matrix(a.row, b.column);
-        try {
-            result.multiply(b);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    public static Matrix multiply(Matrix a, Matrix b) throws MatrixException {
+        Matrix result = new Matrix(a);
+        result.multiply(b);
         return result;
     }
-    public static Matrix transpose(Matrix a) {
-        a.transpose();
-        return a;
+    public static Matrix multiply_element_wise(Matrix a, Matrix b) throws MatrixException {
+        Matrix result = new Matrix(a);
+        result.multiply_element_wise(b);
+        return result;
+    }
+    public static Matrix map(Matrix a, ActivationFunction func) {
+        Matrix result = new Matrix(a);
+        result.map(func);
+        return result;
+    }
+    public static Matrix transpose(Matrix a){
+        Matrix result = new Matrix(a);
+        result.transpose();
+        return result;
     }
 }
