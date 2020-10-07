@@ -1,2 +1,2 @@
-# java-neural-network-cirno
-A Cirno Level neural network library, which means it's easy to understand but very SLOW.
+# java-neural-network-basic
+A simple native java neural network project. It's very SLOW.

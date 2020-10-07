@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/java-neural-network-cirno.iml" filepath="$PROJECT_DIR$/java-neural-network-cirno.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NeuralNetworkBasic.iml" filepath="$PROJECT_DIR$/NeuralNetworkBasic.iml" />
     </modules>
   </component>
 </project>

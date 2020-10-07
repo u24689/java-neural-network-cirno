@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="169aa64c-a988-4adb-a63f-61ebb26bd162" name="Default Changelist" comment="" />
+    <list default="true" id="c07e4766-db47-456b-93be-1a681f8b0d19" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1hf7UfetYhEuoiyLBu4IaotPJBD" />
+  <component name="ProjectId" id="1haBa0FAXqFOFBdNSugOZg2xwUn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -47,10 +47,15 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\NFLS\Desktop\NeuralNetworkBasic\src\com\u24689\nn\basic" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.u24689.neuralnetwork.cirno.Main" />
-      <module name="java-neural-network-cirno" />
+      <option name="MAIN_CLASS_NAME" value="com.u24689.nn.basic.Main" />
+      <module name="NeuralNetworkBasic" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -61,14 +66,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="169aa64c-a988-4adb-a63f-61ebb26bd162" name="Default Changelist" comment="" />
-      <created>1600390309755</created>
+      <changelist id="c07e4766-db47-456b-93be-1a681f8b0d19" name="Default Changelist" comment="" />
+      <created>1600239381653</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600390309755</updated>
-      <workItem from="1600390312827" duration="1594000" />
-      <workItem from="1600844518445" duration="2099000" />
-      <workItem from="1601189954175" duration="847000" />
+      <updated>1600239381653</updated>
+      <workItem from="1600239384441" duration="5000" />
+      <workItem from="1600239463583" duration="2688000" />
+      <workItem from="1600249291047" duration="132000" />
+      <workItem from="1601986349527" duration="122000" />
+      <workItem from="1601986482787" duration="123000" />
+      <workItem from="1601986617968" duration="28000" />
     </task>
     <servers />
   </component>
@@ -88,29 +96,29 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600390414633">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600241298655">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600390414633" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1601190992994">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600241298655" />
+    <state width="1558" height="218" key="GridCell.Tab.0.bottom" timestamp="1600249434078">
+      <screen x="0" y="0" width="1600" height="856" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601190992994" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1601190992993">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1558" height="218" key="GridCell.Tab.0.bottom/0.0.1600.856@0.0.1600.856" timestamp="1600249434078" />
+    <state width="1877" height="298" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600242167462" />
+    <state width="1558" height="218" key="GridCell.Tab.0.center" timestamp="1600249434078">
+      <screen x="0" y="0" width="1600" height="856" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601190992993" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1601190992993">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1558" height="218" key="GridCell.Tab.0.center/0.0.1600.856@0.0.1600.856" timestamp="1600249434078" />
+    <state width="1877" height="298" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600242167462" />
+    <state width="1558" height="218" key="GridCell.Tab.0.left" timestamp="1600249434078">
+      <screen x="0" y="0" width="1600" height="856" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601190992993" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1601190992993">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1558" height="218" key="GridCell.Tab.0.left/0.0.1600.856@0.0.1600.856" timestamp="1600249434078" />
+    <state width="1877" height="298" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600242167462" />
+    <state width="1558" height="218" key="GridCell.Tab.0.right" timestamp="1600249434078">
+      <screen x="0" y="0" width="1600" height="856" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601190992993" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1600845132755">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600845132755" />
+    <state width="1558" height="218" key="GridCell.Tab.0.right/0.0.1600.856@0.0.1600.856" timestamp="1600249434078" />
+    <state width="1877" height="298" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600242167462" />
   </component>
 </project>
