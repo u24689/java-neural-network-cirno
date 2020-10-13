@@ -3,6 +3,12 @@ package com.u24689.neuralnetwork.cirno;
 import com.u24689.neuralnetwork.cirno.exceptions.MatrixException;
 
 public class Main {
+    /**
+     * the simplest xor situation
+     * watch these videos to learn more about neural networks
+     * https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+     * https://www.youtube.com/playlist?list=PLRqwX-V7Uu6aCibgK1PTWWu9by6XFdCfh
+     */
     static double inputs[][] = new double[][] {
             {0, 0},
             {0, 1},
