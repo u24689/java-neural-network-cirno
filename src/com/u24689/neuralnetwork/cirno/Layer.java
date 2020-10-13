@@ -3,30 +3,31 @@ package com.u24689.neuralnetwork.cirno;
 import com.u24689.neuralnetwork.cirno.exceptions.MatrixException;
 
 public class Layer {
-    public Matrix value;
-    public Matrix bias;
-    public Matrix weight;
-    public Matrix error;
-    public int layer_size;
-    public double learning_rate;
-    public ActivationFunction activation_function;
+    private Matrix value;
+    private Matrix raw_value;
+    private Matrix bias;
+    private Matrix weight;
+    private Matrix error;
+    private int layer_size;
+    private double learning_rate;
+    private ActivationFunction activation_function;
 
     Layer (int new_layer_size, int previous_layer_size, ActivationFunction new_activation_function) {
         layer_size = new_layer_size;
         value = new Matrix(layer_size, 1);
+        raw_value = new Matrix(layer_size, 1);
         bias = new Matrix(layer_size, 1);
         weight = new Matrix(layer_size, previous_layer_size);
         activation_function = new_activation_function;
         error = new Matrix(layer_size, 1);
-        value.randomize(0, 1);
         bias.randomize(0, 1);
         weight.randomize(0, 1);
     }
 
     public void feed_forward(Layer previousLayer) throws MatrixException {
-        value = Matrix.multiply(weight, previousLayer.value);
-        value.add(bias);
-        value.map(Utility.sigmoid());
+        raw_value = Matrix.multiply(weight, previousLayer.value);
+        raw_value.add(bias);
+        value = Matrix.map(raw_value, activation_function, "calculate");
     }
 
 //    public void calculate_error(Matrix answer) throws MatrixException {
@@ -41,7 +42,9 @@ public class Layer {
         if (answer != null) {
             error = Matrix.subtract(answer, value);
         }
-        Matrix gradients = Matrix.map(value, Utility.sigmoided_derivative());
+//        Matrix gradients = Matrix.map(value, activation_function, "calculat");
+//        gradients.mapMatrix.map(value, activation_function, "calculated_derivative")
+        Matrix gradients = Matrix.map(value, activation_function, "calculated_derivative");
         gradients.multiply_element_wise(error);
 
         Matrix delta_bias = gradients;
@@ -60,7 +63,7 @@ public class Layer {
         weight.add(delta_weights);
         bias.add(delta_bias);
 
-        previous_layer.error = Matrix.multiply(Matrix.transpose(weight), gradients);
+        previous_layer.error = Matrix.multiply(Matrix.transpose(weight), error);
 
 //        System.out.println("weights:");
 //        weight.print();
@@ -87,11 +90,20 @@ public class Layer {
         System.out.println();
     }
 
-    public void setValue(Matrix valueMatrix) {
+    public void set_learning_rate(double new_learning_rate) {
+        learning_rate = new_learning_rate;
+    }
+
+    public void set_value(Matrix valueMatrix) {
         value = valueMatrix;
     }
 
-    public void setValue(double[] valueArray) {
+    public void set_value(double[] valueArray) {
         value = new Matrix(valueArray);
+        raw_value = new Matrix(valueArray);
+    }
+
+    public Matrix get_value() {
+        return value;
     }
 }

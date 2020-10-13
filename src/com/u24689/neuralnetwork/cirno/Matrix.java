@@ -118,15 +118,47 @@ public class Matrix {
             }
         }
     }
-    public void map(ActivationFunction func) {
+
+    /**
+     * map an activation function to a matrix
+     * @param func
+     * @param method: can be calculate, derivative, calculated_derivative and reverse
+     */
+    public void map(ActivationFunction func, String method) {
         for (int i = 0; i < row; i += 1) {
             for (int j = 0; j < column; j += 1) {
-                data[i][j] = func.calculate(data[i][j]);
+                if (method == "calculate") {
+                    data[i][j] = func.calculate(data[i][j]);
+                } else if (method == "derivative") {
+                    data[i][j] = func.derivative(data[i][j]);
+                } else if (method == "calculated_derivative") {
+                    data[i][j] = func.calculated_derivative(data[i][j]);
+                } else if (method == "reverse") {
+                    data[i][j] = func.reverse(data[i][j]);
+                }
             }
         }
     }
+    public double[] to_1d_array() throws MatrixException {
+        if (row != 1 && column != 1) {
+            throw new MatrixException(String.format("Can't convert matrix with size [%d, %d] to 1d array", row, column));
+        }
+        double[] result;
+        if (row == 1) {
+            result = new double[column];
+            for (int i = 0; i < column; i += 1) {
+                result[i] = data[0][i];
+            }
+        } else {
+            result = new double[row];
+            for (int i = 0; i < row; i += 1) {
+                result[i] = data[i][0];
+            }
+        }
+        return result;
+    }
     public void transpose() {
-        Matrix p = new Matrix(data);
+        Matrix p = new Matrix(this);
         row = p.column;
         column = p.row;
         data = new double[row][column];
@@ -193,10 +225,13 @@ public class Matrix {
         result.multiply_element_wise(b);
         return result;
     }
-    public static Matrix map(Matrix a, ActivationFunction func) {
+    public static Matrix map(Matrix a, ActivationFunction func, String method) {
         Matrix result = new Matrix(a);
-        result.map(func);
+        result.map(func, method);
         return result;
+    }
+    public static double[] to_1d_array(Matrix a) throws MatrixException {
+        return a.to_1d_array();
     }
     public static Matrix transpose(Matrix a){
         Matrix result = new Matrix(a);
